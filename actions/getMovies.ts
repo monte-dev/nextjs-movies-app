@@ -20,14 +20,11 @@ export const getTopRatedMovies = async (page: number): Promise<Movies[]> => {
 	}
 };
 
-export const getMoviesByQuery = async (
-	query: string,
-	page: number
-): Promise<Movies[]> => {
+export const getMoviesByQuery = async (query: string): Promise<Movies[]> => {
 	try {
 		const encodedQuery = encodeURIComponent(query);
 		const res = await fetch(
-			`https://api.themoviedb.org/3/search/movie?query=${encodedQuery}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US&page=${page}`
+			`https://api.themoviedb.org/3/search/movie?query=${encodedQuery}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
 		);
 
 		if (!res.ok) {
