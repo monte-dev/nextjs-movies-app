@@ -1,6 +1,6 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import SearchResults from './components/search-results';
+import SearchResults from './_components/search-results';
 
 const SearchPage = () => {
 	const searchParams = useSearchParams();
