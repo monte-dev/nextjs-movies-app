@@ -20,20 +20,20 @@ const Searchbar = () => {
 	return (
 		<form
 			onSubmit={onSearch}
-			className="relative w-full md:w-72 lg:w-96 flex items-center"
+			className="relative w-full md:w-72 lg:w-96 flex items-center justify-center"
 		>
 			<Input
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
-				className="w-60 md:w-96 border-rose-200 border-e-0 bg-gray-100 rounded-r-none focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:ring-transparent"
+				className="w-32 sm:w-48 md:w-64 border-colors-light-400 border-e-0 bg-colors-light-500 rounded-r-none focus-visible:ring-offset-0 focus-visible:ring-0 focus-visible:ring-transparent active:border-colors-primary-100 active:border-e-[1px]"
 			/>
 			<Button
 				type="submit"
 				title="search"
 				variant="secondary"
 				className="border-[1px] border-l-0
-				border-rose-200
-				rounded-l-none "
+				border-colors-light-400 text-white
+				rounded-l-none bg-colors-light-500 hover:bg-colors-primary-400"
 			>
 				<HiSearch />
 			</Button>

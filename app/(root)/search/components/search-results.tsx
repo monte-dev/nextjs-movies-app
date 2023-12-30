@@ -5,9 +5,8 @@ interface SearchResultsProps {
 }
 const SearchResults = async ({ query }: SearchResultsProps) => {
 	const results = await getMoviesByQuery(query!);
-	// console.log(results);
 	return (
-		<div>
+		<div className="flex min-h-screen flex-col items-center justify-between py-8 pt-6 pb-20">
 			<h3>SearchResults:</h3>
 			{results.map((movie) => (
 				<div key={movie.id}>
