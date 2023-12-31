@@ -5,42 +5,58 @@ import {
 	Carousel,
 	CarouselContent,
 	CarouselItem,
-	CarouselNext,
-	CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Movies } from '@/types/tmdb_types';
+import { Movies, Series } from '@/types/tmdb_types';
 
 interface MovieCarouselProps {
 	movies: Movies[];
+	series: Series[];
 }
 
-const MovieCarousel = ({ movies }: MovieCarouselProps) => {
-	const [loadedMovies, setLoadedMovies] = useState(movies);
+const MovieCarousel = ({ movies, series }: MovieCarouselProps) => {
+	const [loadedContent, setLoadedContent] = useState<Movies[] | Series[]>(
+		movies || series
+	);
+
 	useEffect(() => {
-		setLoadedMovies(movies);
-	}, [movies]);
+		setLoadedContent(movies || series);
+	}, [movies, series]);
 
 	return (
 		<Carousel className="w-full sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-4xl">
 			<CarouselContent>
-				{loadedMovies.slice(0, 12).map((movie) => (
+				{loadedContent.slice(0, 12).map((content) => (
 					<CarouselItem
-						key={movie.id}
+						key={content.id}
 						className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
 					>
 						<img
-							className="h-[200px] m-auto"
+							className="h-[200px] m-auto object-cover"
 							src={
-								process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH +
-								movie.backdrop_path
+								process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH
+									? process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH +
+									  (content.backdrop_path ||
+											content.poster_path)
+									: `/no-image.jpg`
 							}
-							alt={movie.original_title}
+							alt={
+								'original_title' in content
+									? content.original_title
+									: 'original_name' in content
+									? content.original_name
+									: 'Unknown Title'
+							}
 						/>
-						<p>{movie.title}</p>
+						<p>
+							{('title' in content
+								? content.title
+								: content.name) || 'Unknown Title'}
+						</p>
 					</CarouselItem>
 				))}
 			</CarouselContent>
 		</Carousel>
 	);
 };
+
 export default MovieCarousel;
