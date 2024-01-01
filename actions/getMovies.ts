@@ -40,7 +40,7 @@ export const getMoviesByQuery = async (query: string): Promise<Movies[]> => {
 	}
 };
 
-export const getMovieDetail = async (id: number): Promise<Movie[]> => {
+export const getMovieDetail = async (id: number): Promise<Movie> => {
 	try {
 		const res = await fetch(
 			`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&append_to_response=videos,images&language=en-US`

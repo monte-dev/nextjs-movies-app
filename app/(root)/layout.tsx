@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Navbar from './components/navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,8 +17,7 @@ export default function HomeLayout({
 		<section
 			className={`${inter.className} w-full flex flex-col items-center`}
 		>
-			<Navbar />
-			<div className="w-full">{children}</div>
+			{children}
 		</section>
 	);
 }
