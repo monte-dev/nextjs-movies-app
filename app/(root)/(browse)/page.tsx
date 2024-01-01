@@ -1,6 +1,6 @@
 import { getTopRatedMovies } from '@/actions/getMovies';
-import MovieCarousel from './components/movieCarousel';
 import { getTopRatedSeries } from '@/actions/getSeries';
+import MediaTrailerCarousel from './components/mediaTrailerCarousel';
 
 const HomePage = async () => {
 	const topRatedMovies = await getTopRatedMovies(1);
@@ -8,8 +8,8 @@ const HomePage = async () => {
 
 	return (
 		<section>
-			<MovieCarousel movies={topRatedMovies} />
-			<MovieCarousel series={topRatedSeries} />
+			<MediaTrailerCarousel movies={topRatedMovies} />
+			<MediaTrailerCarousel series={topRatedSeries} />
 		</section>
 	);
 };
