@@ -12,7 +12,7 @@ const TrailerCarouselCard = async ({
 }: TrailerCarouselProps) => {
 	const bestImage = await getMediaImages(contentType, content.id);
 
-	console.log(bestImage);
+	// console.log(bestImage);
 
 	return (
 		<div>

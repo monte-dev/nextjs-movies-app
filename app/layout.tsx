@@ -24,7 +24,7 @@ export default function RootLayout({
 					<Navbar />
 				</header>
 				<div className="w-full flex flex-col sm:flex-row bg-colors-dark-400 relative ">
-					<aside className=" bg-colors-dark-500 w-full h-[60px] text-xs sm:text-base overflow-hidden sm:h-screen sm:w-1/4 md:max-w-[200px] md:drop-shadow shadow-md shadow-colors-light-500  hover:shadow-colors-primary-500 hover:border-e-[1px] hover:border-colors-dark-200 transition-colors duration-700 ease-in-out">
+					<aside className=" bg-colors-dark-500 w-full h-[60px] text-xs sm:text-base overflow-hidden sm:h-screen sm:w-1/4 md:max-w-[200px] md:drop-shadow shadow-inner shadow-colors-dark-300  hover:shadow-colors-dark-200  transition-all duration-700 ease-in-out">
 						<SideMenu />
 					</aside>
 					<main className="bg-colors-dark-500 flex min-h-screen flex-col m-auto w-full ">
