@@ -23,11 +23,11 @@ export default function RootLayout({
 				<header>
 					<Navbar />
 				</header>
-				<div className="w-full flex flex-col sm:flex-row bg-colors-dark-300 relative ">
-					<aside className=" bg-colors-dark-300 w-full h-[60px] text-xs sm:text-base overflow-hidden sm:h-screen sm:w-1/4 md:max-w-[200px] shadow-md shadow-colors-dark-400 hover:shadow-lg hover:shadow-colors-dark-400">
+				<div className="w-full flex flex-col sm:flex-row bg-colors-dark-400 relative ">
+					<aside className=" bg-colors-dark-500 w-full h-[60px] text-xs sm:text-base overflow-hidden sm:h-screen sm:w-1/4 md:max-w-[200px] md:drop-shadow shadow-md shadow-colors-light-500  hover:shadow-colors-primary-500 hover:border-e-[1px] hover:border-colors-dark-200 transition-colors duration-700 ease-in-out">
 						<SideMenu />
 					</aside>
-					<main className="bg-colors-dark-200 flex min-h-screen flex-col m-auto w-full py-4 sm:py-6 md:py-8 px-2 md:px-4 lg:px-8">
+					<main className="bg-colors-dark-500 flex min-h-screen flex-col m-auto w-full ">
 						{children}
 					</main>
 				</div>

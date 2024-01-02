@@ -7,7 +7,6 @@ interface MoviePageParams {
 
 const MoviePage = async ({ params }: MoviePageParams) => {
 	const movie = await getMovieDetail(params.movieId);
-	console.log(movie);
 	return (
 		<div>
 			<MovieClient movie={movie} />

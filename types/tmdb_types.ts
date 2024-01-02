@@ -58,6 +58,15 @@ export interface Movie {
 	tagline: string;
 	title: string;
 	video: boolean;
+	videos: {
+		results: {
+			name: string;
+			key: string;
+			site: string;
+			type: string;
+			official: boolean;
+		}[];
+	};
 	vote_average: number;
 	vote_count: number;
 }

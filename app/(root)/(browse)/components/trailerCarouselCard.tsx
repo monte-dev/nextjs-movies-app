@@ -19,8 +19,8 @@ const TrailerCarouselCard = async ({
 			<img
 				className="h-[280px] w-full m-auto object-cover rounded-md shadow-inner shadow-colors-dark-300"
 				src={
-					process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH
-						? process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH +
+					process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH_S
+						? process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH_S +
 						  (content.poster_path || content.backdrop_path)
 						: `/no-image.jpg`
 				}

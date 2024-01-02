@@ -6,7 +6,7 @@ import {
 
 const SideMenu = () => {
 	return (
-		<div className="text-colors-light-100">
+		<div className="text-colors-light-100 h-full">
 			<nav>
 				<ul className="w-full flex sm:flex sm:flex-col justify-center gap-x-8 sm:gap-x-0 px-4  sm:py-8 md:px-4 md:py-8  ">
 					<div className="group">
