@@ -166,6 +166,15 @@ export interface Serie {
 		name: string;
 	}[];
 	status: string;
+	videos: {
+		results: {
+			name: string;
+			key: string;
+			site: string;
+			type: string;
+			official: boolean;
+		}[];
+	};
 	tagline: string;
 	type: string;
 	vote_average: number;
