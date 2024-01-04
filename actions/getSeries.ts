@@ -8,14 +8,17 @@ export const getTopRatedSeries = async (page: number): Promise<Series[]> => {
 
 		if (!res.ok) {
 			throw new Error(
-				`Failed to fetch top-rated TV series. Status: ${res.status}`
+				`[SERIES_TOP_RATED] Failed to fetch top-rated TV series. Status: ${res.status}`
 			);
 		}
 
 		const data = await res.json();
 		return data.results;
 	} catch (error) {
-		console.error('Error fetching top-rated TV series:', error);
+		console.error(
+			'[SERIES_TOP_RATED] Error fetching top-rated TV series:',
+			error
+		);
 		throw error;
 	}
 };
@@ -27,13 +30,33 @@ export const getSeriesDetail = async (id: number): Promise<Serie> => {
 		);
 		if (!res.ok) {
 			throw new Error(
-				`Failed to fetch series with id: ${id}. Status: ${res.status}`
+				`[SERIES_DETAIL] Failed to fetch series with id: ${id}. Status: ${res.status}`
 			);
 		}
 		const data = await res.json();
 		return data;
 	} catch (error) {
-		console.error('Error fetching series:', error);
+		console.error('[SERIES_DETAIL] Error fetching series:', error);
+		throw error;
+	}
+};
+
+export const getSeriesByQuery = async (query: string): Promise<Series[]> => {
+	try {
+		const encodedQuery = encodeURIComponent(query);
+		const res = await fetch(
+			`https://api.themoviedb.org/3/search/tv?query=${encodedQuery}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
+		);
+
+		if (!res.ok) {
+			throw new Error(
+				`[SERIES_QUERY]Failed to fetch series with parameters: ${query}. Status: ${res.status}`
+			);
+		}
+		const data = await res.json();
+		return data.results;
+	} catch (error) {
+		console.error('[SERIES_QUERY] Error fetching series:', error);
 		throw error;
 	}
 };

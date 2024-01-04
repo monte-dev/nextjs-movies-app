@@ -6,14 +6,7 @@ interface TrailerCarouselProps {
 	contentType: MediaType;
 }
 
-const TrailerCarouselCard = async ({
-	content,
-	contentType,
-}: TrailerCarouselProps) => {
-	const bestImage = await getMediaImages(contentType, content.id);
-
-	// console.log(bestImage);
-
+const TrailerCarouselCard = async ({ content }: TrailerCarouselProps) => {
 	return (
 		<div>
 			<img

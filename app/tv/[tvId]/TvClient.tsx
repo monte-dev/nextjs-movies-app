@@ -11,8 +11,9 @@ interface TvClientProps {
 }
 const TvClient = ({ series }: TvClientProps) => {
 	const thisSeries = series;
+	console.log(series);
 	const trailerVideo = series.videos.results.find(
-		(video) => video.type === 'Trailer'
+		(video) => video.type === 'Trailer' || video.type
 	);
 
 	const [openTrailerModal, setOpenTrailerModal] = useState(false);
