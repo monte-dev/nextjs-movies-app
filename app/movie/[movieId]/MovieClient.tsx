@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Movie } from '@/types/tmdb_types';
 import TrailerModal from '@/components/trailerModal';
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 interface MovieProps {
 	movie: Movie;
@@ -15,21 +16,35 @@ const MovieClient = ({ movie }: MovieProps) => {
 		(video) => video.type === 'Trailer'
 	);
 
+	console.log(thisMovie);
+
 	const [openTrailerModal, setOpenTrailerModal] = useState(false);
+
+	const onTrailerClick = () => {
+		if (trailerVideo !== undefined) {
+			setOpenTrailerModal(true);
+		} else {
+			toast.error('No trailer available.');
+		}
+	};
 
 	return (
 		<>
-			<TrailerModal
-				isOpen={openTrailerModal}
-				onClose={() => setOpenTrailerModal(false)}
-				videoKey={trailerVideo!.key}
-			/>
+			{trailerVideo !== undefined && (
+				<TrailerModal
+					isOpen={openTrailerModal}
+					onClose={() => setOpenTrailerModal(false)}
+					videoKey={trailerVideo!.key}
+				/>
+			)}
 			<div className="bg-colors-dark-500 text-colors-light-200">
 				<section className="relative">
 					<div className="absolute px-2 h-full w-full shadow-[inset_rgba(3,5,5,1)_40px_5px_50px_50px]"></div>
 					<img
+						className="max-h-[400px] lg:max-h-[600px] m-auto w-full"
 						src={
-							process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH
+							process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH &&
+							thisMovie.backdrop_path
 								? process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH +
 								  thisMovie.backdrop_path
 								: `/no-image.jpg`
@@ -64,9 +79,10 @@ const MovieClient = ({ movie }: MovieProps) => {
 								Watch Trailer
 							</p>
 							<BiMoviePlay
-								onClick={() => setOpenTrailerModal(true)}
+								onClick={() => onTrailerClick()}
 								className="cursor-pointer hover:text-colors-primary-100 h-10 w-10 hover:scale-110 transition-all"
 							/>
+							<Toaster position="top-right" />
 						</div>
 						<div className="flex gap-x-2">
 							<Badge>{thisMovie.runtime} mins</Badge>
@@ -80,7 +96,6 @@ const MovieClient = ({ movie }: MovieProps) => {
 					</div>
 				</section>
 			</div>
-			<div className="w-full h-full"></div>
 		</>
 	);
 };
