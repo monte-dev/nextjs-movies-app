@@ -6,6 +6,8 @@ import { Movie, MovieCredit } from '@/types/tmdb_types';
 import TrailerModal from '@/components/trailerModal';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { Separator } from '@/components/ui/separator';
+import CreditsCollapsible from './components/creditsCollapsible';
 
 interface MovieProps {
 	movie: Movie;
@@ -15,8 +17,6 @@ const MovieClient = ({ movie, credits }: MovieProps) => {
 	const trailerVideo = movie.videos.results.find(
 		(video) => video.type === 'Trailer'
 	);
-
-	console.log(credits);
 
 	const [openTrailerModal, setOpenTrailerModal] = useState(false);
 
@@ -95,6 +95,8 @@ const MovieClient = ({ movie, credits }: MovieProps) => {
 						</div>
 					</div>
 				</section>
+				<Separator className="bg-colors-light-400" />
+				<CreditsCollapsible credits={credits} />
 			</div>
 		</>
 	);
