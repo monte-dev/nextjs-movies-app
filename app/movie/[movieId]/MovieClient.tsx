@@ -2,21 +2,21 @@
 
 import { BiMoviePlay } from 'react-icons/bi';
 import { Badge } from '@/components/ui/badge';
-import { Movie } from '@/types/tmdb_types';
+import { Movie, MovieCredit } from '@/types/tmdb_types';
 import TrailerModal from '@/components/trailerModal';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 interface MovieProps {
 	movie: Movie;
+	credits: MovieCredit;
 }
-const MovieClient = ({ movie }: MovieProps) => {
-	const thisMovie = movie;
+const MovieClient = ({ movie, credits }: MovieProps) => {
 	const trailerVideo = movie.videos.results.find(
 		(video) => video.type === 'Trailer'
 	);
 
-	console.log(thisMovie);
+	console.log(credits);
 
 	const [openTrailerModal, setOpenTrailerModal] = useState(false);
 
@@ -44,28 +44,28 @@ const MovieClient = ({ movie }: MovieProps) => {
 						className="max-h-[400px] lg:max-h-[600px] m-auto w-full"
 						src={
 							process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH &&
-							thisMovie.backdrop_path
+							movie.backdrop_path
 								? process.env.NEXT_PUBLIC_TMDB_IMAGE_PATH +
-								  thisMovie.backdrop_path
+								  movie.backdrop_path
 								: `/no-image.jpg`
 						}
-						alt={thisMovie.title}
+						alt={movie.title}
 					/>
 					<div className="absolute text-sm md:text-base xl:text-lg bottom-0 ps-8 pe-12 md:pe-44 text-colors-white bg-gradient-to-t from-colors-dark-500 to-colors-dark-500/10 font-semibold">
 						<p className="py-6 tracking-tighter">
-							{thisMovie.overview}
+							{movie.overview}
 						</p>
 					</div>
 					<div className="h-12 w-full -mt-12 bg-gradient-to-t from-colors-dark-500 to-transparent"></div>
 				</section>
 				<section className="px-4 py-4 md:px-6 lg:px-8">
 					<h2 className="font-bold text-2xl md:text-4xl tracking-tight border-b-2 border-colors-primary-300 w-fit px-2">
-						{thisMovie.title}
+						{movie.title}
 					</h2>
-					<h4 className="text-xs mt-3 ms-2">"{thisMovie.tagline}"</h4>
+					<h4 className="text-xs mt-3 ms-2">"{movie.tagline}"</h4>
 					<div className="flex p-4 justify-around items-center py-4">
 						<div className="flex gap-x-2 ">
-							{thisMovie.genres.map((genre) => (
+							{movie.genres.map((genre) => (
 								<Badge
 									className="bg-colors-primary-300"
 									key={genre.id}
@@ -85,11 +85,11 @@ const MovieClient = ({ movie }: MovieProps) => {
 							<Toaster position="top-right" />
 						</div>
 						<div className="flex gap-x-2">
-							<Badge>{thisMovie.runtime} mins</Badge>
+							<Badge>{movie.runtime} mins</Badge>
 							<Badge>
 								Released:
 								<span className="ms-1 font-bold">
-									{thisMovie.release_date.slice(0, 4)}
+									{movie.release_date.slice(0, 4)}
 								</span>
 							</Badge>
 						</div>
