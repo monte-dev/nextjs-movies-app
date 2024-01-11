@@ -15,20 +15,61 @@ interface CreditsProps {
 
 const CreditsCollapsible = ({ credits }: CreditsProps) => {
 	const cast = credits.cast;
-	const crew = credits.crew.slice(0, 20);
+
+	const directorsSet = new Set();
+	const directors = credits.crew.filter(
+		(crewMember) =>
+			crewMember.job === 'Director' ||
+			crewMember.known_for_department === 'Directing'
+	);
+	directors.forEach((director) => {
+		directorsSet.add(director.name);
+	});
+	const uniqueDirectors = Array.from(directorsSet);
+
+	const writersSet = new Set();
+	const writers = credits.crew.filter(
+		(crewMember) =>
+			crewMember.job === 'Writer' ||
+			crewMember.known_for_department === 'Writing'
+	);
+	writers.forEach((writer) => {
+		writersSet.add(writer.name);
+	});
+	const uniqueWriters = Array.from(writersSet);
 
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleTriggerClick = () => {
 		setIsOpen(!isOpen);
 	};
-
+	console.log(uniqueDirectors);
 	return (
 		<div className="px-4 py-2">
 			<h2 className="text-3xl ms-8 text-colors-light-100 my-4">
 				Top cast
 			</h2>
 			<div>
+				<div>
+					<div>
+						<div>
+							<h4 className="text-white">Directors:</h4>
+							{uniqueDirectors.map((director, index) => (
+								<p className="text-white" key={index}>
+									{director}
+								</p>
+							))}
+						</div>
+						<div>
+							<h4 className="text-white">Writers:</h4>
+							{uniqueWriters.map((writer, index) => (
+								<p className="text-white" key={index}>
+									{writer}
+								</p>
+							))}
+						</div>
+					</div>
+				</div>
 				<Collapsible
 					open={isOpen}
 					onOpenChange={handleTriggerClick}
