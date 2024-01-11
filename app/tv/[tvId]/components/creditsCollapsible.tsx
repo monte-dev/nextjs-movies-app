@@ -6,11 +6,11 @@ import {
 	CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { Separator } from '@/components/ui/separator';
-import { MovieCredit } from '@/types/tmdb_types';
+import { SeriesCredit } from '@/types/tmdb_types';
 import { useState } from 'react';
 
 interface CreditsProps {
-	credits: MovieCredit;
+	credits: SeriesCredit;
 }
 
 const CreditsCollapsible = ({ credits }: CreditsProps) => {
@@ -20,7 +20,7 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 	const directors = credits.crew.filter(
 		(crewMember) =>
 			crewMember.job === 'Director' ||
-			crewMember.known_for_department === 'Directing'
+			crewMember.department === 'Directing'
 	);
 	directors.forEach((director) => {
 		directorsSet.add(director.name);
@@ -44,7 +44,7 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 		setIsOpen(!isOpen);
 	};
 	return (
-		<div className="px-4 py-2 ">
+		<div className="px-4 py-2 text-colors-light-100">
 			<div className="flex justify-between items-center">
 				<h2 className="w-fit px-8 text-3xl mx-2 text-colors-light-100 my-4 bg-colors-dark-200 p-3">
 					Top cast
@@ -63,14 +63,17 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 					</div>
 					<div className="flex">
 						<h4 className="text-white me-2">Writers:</h4>
-						{uniqueWriters.map((writer, index) => (
-							<p
-								className="text-white text-md  me-2 text-colors-light-300"
-								key={index}
-							>
-								{writer}
-							</p>
-						))}
+						{uniqueWriters
+							.reverse()
+							.slice(0, 3)
+							.map((writer, index) => (
+								<p
+									className="text-white text-md  me-2 text-colors-light-300"
+									key={index}
+								>
+									{writer}
+								</p>
+							))}
 					</div>
 				</div>
 			</div>

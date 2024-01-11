@@ -1,11 +1,17 @@
 'use client';
 
-import { BiMoviePlay } from 'react-icons/bi';
-import { Badge } from '@/components/ui/badge';
-import { Serie, SeriesCredit } from '@/types/tmdb_types';
-import TrailerModal from '@/components/trailerModal';
 import { useState } from 'react';
+
+import { Serie, SeriesCredit } from '@/types/tmdb_types';
+
 import toast, { Toaster } from 'react-hot-toast';
+import { BiMoviePlay } from 'react-icons/bi';
+
+import CreditsCollapsible from './components/creditsCollapsible';
+
+import { Badge } from '@/components/ui/badge';
+import TrailerModal from '@/components/trailerModal';
+import { Separator } from '@/components/ui/separator';
 
 interface TvClientProps {
 	series: Serie;
@@ -94,7 +100,8 @@ const TvClient = ({ series, credits }: TvClientProps) => {
 					</div>
 				</section>
 			</div>
-			<div className="w-full h-full"></div>
+			<Separator className="bg-colors-light-400" />
+			<CreditsCollapsible credits={credits} />
 		</>
 	);
 };

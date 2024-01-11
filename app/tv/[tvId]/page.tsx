@@ -1,6 +1,7 @@
 import { getMediaCredits } from '@/actions/getMediaCredits';
 import TvClient from './TvClient';
 import { getSeriesDetail } from '@/actions/getSeries';
+import { SeriesCredit } from '@/types/tmdb_types';
 
 interface SeriesPageParams {
 	params: { tvId: number };
@@ -8,7 +9,7 @@ interface SeriesPageParams {
 
 const SeriesPage = async ({ params }: SeriesPageParams) => {
 	const series = await getSeriesDetail(params.tvId);
-	const credits = await getMediaCredits(params.tvId, true);
+	const credits: SeriesCredit = await getMediaCredits(params.tvId, false);
 
 	return (
 		<div>
