@@ -62,8 +62,8 @@ const MediaTrailerCarousel = ({ movies, series }: MediaCarouselProps) => {
 					</CarouselItem>
 				))}
 			</CarouselContent>
-			<CarouselPrevious className="opacity-0 group-hover/container:opacity-100 ms-14" />
-			<CarouselNext className="opacity-0 group-hover/container:opacity-100 me-14" />
+			<CarouselPrevious className="opacity-0 text-white group-hover/container:opacity-100 ms-14" />
+			<CarouselNext className="opacity-0 text-white group-hover/container:opacity-100 me-14" />
 		</Carousel>
 	);
 };

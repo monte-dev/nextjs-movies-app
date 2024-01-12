@@ -51,21 +51,25 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 				</h2>
 				<div className="flex flex-col items-end py-3">
 					<div className="flex">
-						<h4 className="text-white me-2 ">Directors:</h4>
+						<h4 className="text-white me-2  text-sm md:text-md">
+							Directors:
+						</h4>
 						{uniqueDirectors.map((director, index) => (
 							<p
-								className="text-white text-md me-2 text-colors-light-300"
+								className="text-white text-sm md:text-md me-2 text-colors-light-300"
 								key={index}
 							>
 								{director}
 							</p>
 						))}
 					</div>
-					<div className="flex">
-						<h4 className="text-white me-2">Writers:</h4>
+					<div className="flex mt-2">
+						<h4 className="text-white me-2 text-sm md:text-md">
+							Writers:
+						</h4>
 						{uniqueWriters.map((writer, index) => (
 							<p
-								className="text-white text-md  me-2 text-colors-light-300"
+								className="text-white text-sm md:text-md  me-2 text-colors-light-300"
 								key={index}
 							>
 								{writer}
@@ -108,8 +112,8 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 							))}
 						</div>
 						{!isOpen && (
-							<CollapsibleTrigger>
-								<Button variant={'outline'}>Show more</Button>
+							<CollapsibleTrigger className="rounded-md text-sm bg-colors-primary-300 p-3">
+								Show more
 							</CollapsibleTrigger>
 						)}
 						<CollapsibleContent className="grid grid-cols-5 gap-x-2 ">
@@ -131,7 +135,7 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 											alt={member.name}
 										/>
 									</div>
-									<p className="text-sm overflow-hidden pt-2 text-center">
+									<p className="text-sm overflow-hidden pt-2 text-center h-8">
 										{member.name}
 									</p>
 									<Separator className="bg-colors-primary-400 mt-3" />
@@ -142,8 +146,8 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 							))}
 						</CollapsibleContent>
 						{isOpen && (
-							<CollapsibleTrigger>
-								<Button variant={'outline'}>Hide</Button>
+							<CollapsibleTrigger className="rounded-md text-sm bg-colors-primary-300 p-3">
+								Hide
 							</CollapsibleTrigger>
 						)}
 					</div>
