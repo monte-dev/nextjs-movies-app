@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Searchbar from './searchbar';
+import { UserButton } from '@clerk/nextjs';
 
 const Navbar = () => {
 	return (
@@ -10,7 +11,9 @@ const Navbar = () => {
 				</Link>
 			</div>
 			<Searchbar />
-			<div>user</div>
+			<div>
+				<UserButton afterSignOutUrl="/" />
+			</div>
 		</nav>
 	);
 };

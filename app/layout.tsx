@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
+
 import './globals.css';
 
 import Navbar from './(root)/components/navbar';
@@ -18,20 +20,22 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={`${inter.className}`}>
-				<header>
-					<Navbar />
-				</header>
-				<div className="w-full flex flex-col sm:flex-row bg-colors-dark-400 relative ">
-					<aside className=" bg-colors-dark-500 w-full h-[60px] text-xs sm:text-base overflow-hidden sm:h-screen sm:w-1/4 md:max-w-[200px] md:drop-shadow shadow-inner shadow-colors-dark-300  hover:shadow-colors-dark-200  transition-all duration-700 ease-in-out">
-						<SideMenu />
-					</aside>
-					<main className="bg-colors-dark-500 flex min-h-screen flex-col m-auto w-full ">
-						{children}
-					</main>
-				</div>
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<body className={`${inter.className}`}>
+					<header>
+						<Navbar />
+					</header>
+					<div className="w-full flex flex-col sm:flex-row bg-colors-dark-400 relative ">
+						<aside className=" bg-colors-dark-500 w-full h-[60px] text-xs sm:text-base overflow-hidden sm:h-screen sm:w-1/4 md:max-w-[200px] md:drop-shadow shadow-inner shadow-colors-dark-300  hover:shadow-colors-dark-200  transition-all duration-700 ease-in-out">
+							<SideMenu />
+						</aside>
+						<main className="bg-colors-dark-500 flex min-h-screen flex-col m-auto w-full ">
+							{children}
+						</main>
+					</div>
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }

@@ -45,10 +45,7 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 	};
 	return (
 		<div className="px-4 py-2 ">
-			<div className="flex justify-between items-center">
-				<h2 className="w-fit px-8 text-3xl mx-2 text-colors-light-100 my-4 bg-colors-dark-200 p-3">
-					Top cast
-				</h2>
+			<div className="">
 				<div className="flex flex-col items-end py-3">
 					<div className="flex">
 						<h4 className="text-white me-2  text-sm md:text-md">
@@ -77,6 +74,9 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 						))}
 					</div>
 				</div>
+				<h2 className="w-full px-8 text-3xl mx-2 text-colors-light-100 my-4 bg-colors-dark-200 p-3">
+					Top cast
+				</h2>
 			</div>
 			<div className="border border-colors-light-500">
 				<Collapsible
@@ -111,6 +111,7 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 								</div>
 							))}
 						</div>
+
 						{!isOpen && (
 							<CollapsibleTrigger className="rounded-md text-sm bg-colors-primary-300 p-3">
 								Show more
