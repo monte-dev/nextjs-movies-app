@@ -20,7 +20,7 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 	const directors = credits.crew.filter(
 		(crewMember) =>
 			crewMember.job === 'Director' ||
-			crewMember.department === 'Directing'
+			crewMember.known_for_department === 'Directing'
 	);
 	directors.forEach((director) => {
 		directorsSet.add(director.name);
@@ -51,27 +51,31 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 				</h2>
 				<div className="flex flex-col items-end py-3">
 					<div className="flex">
-						<h4 className="text-white me-2 ">Directors:</h4>
-						{uniqueDirectors.map((director, index) => (
+						<h4 className="text-white me-2  font-semibold ">
+							Directors:
+						</h4>
+						{uniqueDirectors.slice(0, 3).map((director, index) => (
 							<p
-								className="text-white text-md me-2 text-colors-light-300"
+								className="text-white text-md me-2 italic text-colors-light-300"
 								key={index}
 							>
-								{director}
+								{director} |
 							</p>
 						))}
 					</div>
 					<div className="flex">
-						<h4 className="text-white me-2">Writers:</h4>
+						<h4 className="text-white me-2 font-semibold ">
+							Writers:
+						</h4>
 						{uniqueWriters
 							.reverse()
 							.slice(0, 3)
 							.map((writer, index) => (
 								<p
-									className="text-white text-md  me-2 text-colors-light-300"
+									className="text-white italic text-md  me-2 text-colors-light-300"
 									key={index}
 								>
-									{writer}
+									{writer} |
 								</p>
 							))}
 					</div>

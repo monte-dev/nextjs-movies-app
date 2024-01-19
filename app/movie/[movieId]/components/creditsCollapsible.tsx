@@ -48,28 +48,28 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 			<div className="">
 				<div className="flex flex-col items-end py-3">
 					<div className="flex">
-						<h4 className="text-white me-2  text-sm md:text-md">
+						<h4 className="text-white me-2 font-semibold text-sm md:text-md">
 							Directors:
 						</h4>
-						{uniqueDirectors.map((director, index) => (
+						{uniqueDirectors.slice(0, 3).map((director, index) => (
 							<p
-								className="text-white text-sm md:text-md me-2 text-colors-light-300"
+								className="text-white text-sm md:text-md  italic me-2 text-colors-light-300"
 								key={index}
 							>
-								{director}
+								{director} |
 							</p>
 						))}
 					</div>
 					<div className="flex mt-2">
-						<h4 className="text-white me-2 text-sm md:text-md">
+						<h4 className="font-semibold text-white me-2 text-sm md:text-md">
 							Writers:
 						</h4>
-						{uniqueWriters.map((writer, index) => (
+						{uniqueWriters.slice(0, 3).map((writer, index) => (
 							<p
-								className="text-white text-sm md:text-md  me-2 text-colors-light-300"
+								className="text-white text-sm italic md:text-md  me-2 text-colors-light-300"
 								key={index}
 							>
-								{writer}
+								{writer} |
 							</p>
 						))}
 					</div>
