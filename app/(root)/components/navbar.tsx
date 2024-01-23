@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Searchbar from './searchbar';
-import { UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 
 const Navbar = () => {
 	return (
@@ -12,7 +12,12 @@ const Navbar = () => {
 			</div>
 			<Searchbar />
 			<div>
-				<UserButton afterSignOutUrl="/" />
+				<SignedIn>
+					<UserButton afterSignOutUrl="/" />
+				</SignedIn>
+				<SignedOut>
+					<SignInButton />
+				</SignedOut>
 			</div>
 		</nav>
 	);
