@@ -20,7 +20,8 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 	const directors = credits.crew.filter(
 		(crewMember) =>
 			crewMember.job === 'Director' ||
-			crewMember.known_for_department === 'Directing'
+			crewMember.known_for_department === 'Directing' ||
+			'Writing'
 	);
 	directors.forEach((director) => {
 		directorsSet.add(director.name);
@@ -45,37 +46,40 @@ const CreditsCollapsible = ({ credits }: CreditsProps) => {
 	};
 	return (
 		<div className="px-4 py-2 text-colors-light-100">
-			<div className="flex justify-between items-center">
-				<h2 className="w-fit px-8 text-3xl mx-2 text-colors-light-100 my-4 bg-colors-dark-200 p-3">
+			<div className="flex items-center justify-between">
+				<h2 className="w-[200px] px-8 text-3xl mx-2 text-colors-light-100 my-4 bg-colors-dark-200 p-3 rounded-ss-full rounded-ee-full text-center tracking-wide">
 					Top cast
 				</h2>
 				<div className="flex flex-col items-end py-3">
 					<div className="flex">
-						<h4 className="text-white me-2  font-semibold ">
+						<h4 className="text-white me-2 font-semibold text-sm md:text-md">
 							Directors:
 						</h4>
-						{uniqueDirectors.slice(0, 3).map((director, index) => (
-							<p
-								className="text-white text-md me-2 italic text-colors-light-300"
-								key={index}
-							>
-								{director} |
-							</p>
-						))}
+						{uniqueDirectors
+							.slice(0, 3)
+							.map((director, index, array) => (
+								<p
+									className="text-white text-sm md:text-md  italic me-2 text-colors-light-300"
+									key={index}
+								>
+									{director}
+									{index !== array.length - 1 && ' |'}
+								</p>
+							))}
 					</div>
-					<div className="flex">
-						<h4 className="text-white me-2 font-semibold ">
+					<div className="flex mt-2">
+						<h4 className="font-semibold text-white me-2 text-sm md:text-md">
 							Writers:
 						</h4>
 						{uniqueWriters
-							.reverse()
 							.slice(0, 3)
-							.map((writer, index) => (
+							.map((writer, index, array) => (
 								<p
-									className="text-white italic text-md  me-2 text-colors-light-300"
+									className="text-white text-sm italic md:text-md  me-2 text-colors-light-300"
 									key={index}
 								>
-									{writer} |
+									{writer}
+									{index !== array.length - 1 && ' |'}
 								</p>
 							))}
 					</div>

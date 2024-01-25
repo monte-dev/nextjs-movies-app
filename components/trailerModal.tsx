@@ -27,7 +27,7 @@ export const TrailerModal: React.FC<TrailerModalProps> = ({
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			<iframe
-				className="h-full w-full"
+				className="h-full w-full rounded-md "
 				src={`https://www.youtube.com/embed/${videoKey}?autoplay=1`}
 				allowFullScreen
 				title="Trailer"
