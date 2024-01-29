@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/carousel';
 
 import TrailerCarouselCard from './trailerCarouselCard';
-import { getContentType } from '@/lib/getContentType';
+import { getContentType } from '@/actions/getContentType';
 
 interface MediaCarouselProps {
 	movies?: Movies[];

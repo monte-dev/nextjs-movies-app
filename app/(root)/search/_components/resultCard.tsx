@@ -5,7 +5,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { getContentType } from '@/lib/getContentType';
+import { getContentType } from '@/actions/getContentType';
 import { Movies, Series } from '@/types/tmdb_types';
 import { Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
