@@ -1,7 +1,7 @@
 import { authMiddleware } from '@clerk/nextjs';
 
 export default authMiddleware({
-	publicRoutes: (req) => !req.url.includes('/dashboard' || '/profile'),
+	publicRoutes: ['/api/webhooks(.*)', '/', /^\/tv\/.+/, /^\/movie\/.+/],
 });
 
 export const config = {
