@@ -1,6 +1,7 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { WebhookEvent } from '@clerk/nextjs/server';
+import prismadb from '@/lib/prismadb';
 
 export async function POST(req: Request) {
 	const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
@@ -47,12 +48,49 @@ export async function POST(req: Request) {
 		});
 	}
 
-	// Get the ID and type
-	const { id } = evt.data;
 	const eventType = evt.type;
+	//create user in prisma
+	if (eventType === 'user.created') {
+		await prismadb.user.create({
+			data: {
+				externalUserId: payload.data.id,
+				username: payload.data.username,
+				imageUrl: payload.data.image_url,
+			},
+		});
+	}
+	//update user in prisma
 
-	console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-	console.log('Webhook body:', body);
+	if (eventType === 'user.updated') {
+		const currentUser = await prismadb.user.findUnique({
+			where: {
+				externalUserId: payload.data.id,
+			},
+		});
+
+		if (!currentUser) {
+			return new Response('User not found', { status: 404 });
+		}
+		await prismadb.user.update({
+			where: {
+				externalUserId: payload.data.id,
+			},
+			data: {
+				username: payload.data.username,
+				imageUrl: payload.data.image_url,
+			},
+		});
+	}
+
+	//delete user in prisma
+
+	if (eventType === 'user.deleted') {
+		await prismadb.user.delete({
+			where: {
+				externalUserId: payload.data.id,
+			},
+		});
+	}
 
 	return new Response('', { status: 200 });
 }
