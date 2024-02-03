@@ -9,12 +9,27 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  username String @unique
-  imageUrl String @db.Text
+  id        String @id @default(uuid())
+  username  String @unique
+  imageUrl  String @db.Text
   externalUserId String @unique
-  about String? @db.Text
+  about     String? @db.Text
+  watchlist Watchlist[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Watchlist {
+  id        String @id  @default(uuid())
+  movieId   String
+  seriesId  String
+  userId    String
+
+  user User  @relation(fields: [userId], references: [externalUserId])
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  @@unique([userId, movieId])
+  @@unique([userId, seriesId])
 }

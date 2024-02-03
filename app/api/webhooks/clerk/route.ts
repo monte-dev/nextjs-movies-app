@@ -49,6 +49,7 @@ export async function POST(req: Request) {
 	}
 
 	const eventType = evt.type;
+
 	//create user in prisma
 	if (eventType === 'user.created') {
 		await prismadb.user.create({
@@ -59,8 +60,8 @@ export async function POST(req: Request) {
 			},
 		});
 	}
-	//update user in prisma
 
+	//update user in prisma
 	if (eventType === 'user.updated') {
 		const currentUser = await prismadb.user.findUnique({
 			where: {
@@ -83,7 +84,6 @@ export async function POST(req: Request) {
 	}
 
 	//delete user in prisma
-
 	if (eventType === 'user.deleted') {
 		await prismadb.user.delete({
 			where: {
