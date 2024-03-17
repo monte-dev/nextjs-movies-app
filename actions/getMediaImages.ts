@@ -1,3 +1,5 @@
+import { MediaType } from '@/types/media_types';
+
 interface Image {
 	aspect_ratio: number;
 	height: number;
@@ -8,11 +10,6 @@ interface Image {
 
 interface ImagesResponse {
 	backdrops: Image[];
-}
-
-export enum MediaType {
-	Movie = 'movie',
-	TV = 'tv',
 }
 
 const fetchImages = async (

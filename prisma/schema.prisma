@@ -22,8 +22,8 @@ model User {
 
 model Watchlist {
   id        String @id  @default(uuid())
-  movieId   String
-  seriesId  String
+  movieId   String?
+  seriesId  String?
   userId    String
 
   user User  @relation(fields: [userId], references: [externalUserId])

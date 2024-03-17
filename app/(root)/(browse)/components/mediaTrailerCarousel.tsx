@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Movies, Series } from '@/types/tmdb_types';
-import { MediaType } from '@/actions/getMediaImages';
-
 import {
 	Carousel,
 	CarouselContent,
@@ -15,6 +13,7 @@ import {
 
 import TrailerCarouselCard from './trailerCarouselCard';
 import { getContentType } from '@/actions/getContentType';
+import { MediaType } from '@/types/media_types';
 
 interface MediaCarouselProps {
 	movies?: Movies[];

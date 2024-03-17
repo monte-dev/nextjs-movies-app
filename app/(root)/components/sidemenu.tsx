@@ -4,7 +4,7 @@ import {
 	MdOutlineStar,
 } from 'react-icons/md';
 
-const SideMenu = () => {
+const SideMenu = async () => {
 	return (
 		<div className="text-colors-light-100 h-full">
 			<nav>

@@ -1,4 +1,3 @@
-import { MediaType } from '@/actions/getMediaImages';
 import {
 	Tooltip,
 	TooltipContent,
@@ -9,6 +8,7 @@ import { getContentType } from '@/actions/getContentType';
 import { Movies, Series } from '@/types/tmdb_types';
 import { Star } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { MediaType } from '@/types/media_types';
 
 interface ResultProps {
 	result: Movies | Series;

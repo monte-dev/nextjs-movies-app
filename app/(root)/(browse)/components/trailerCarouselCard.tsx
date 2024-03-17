@@ -1,4 +1,5 @@
-import getMediaImages, { MediaType } from '@/actions/getMediaImages';
+import { MediaType } from '@/types/media_types';
+
 import { Movies, Series } from '@/types/tmdb_types';
 
 interface TrailerCarouselProps {

@@ -1,4 +1,4 @@
-import { MediaType } from '@/actions/getMediaImages';
+import { MediaType } from '@/types/media_types';
 import { Movies, Series } from '@/types/tmdb_types';
 
 export const getContentType = (content: Movies | Series): MediaType => {
